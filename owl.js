@@ -147,6 +147,8 @@ OWL.prototype.monitor = function (unicast_port = null) {
 	});
 	
 	self.multicastsocket.on("message", function(msg, rinfo) {		
+		var msg = String( msg );
+		var msg = msg.replace(/<\w+='\d*'\/>/g, "");	
 		var json = xml.toJson( msg );
 		var buff = JSON.parse( json );
 		//console.log( util.inspect( buff , {depth: null}));
